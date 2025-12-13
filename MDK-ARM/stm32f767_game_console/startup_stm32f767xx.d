@@ -1,0 +1,1 @@
+stm32f767_game_console\startup_stm32f767xx.o: startup_stm32f767xx.s
