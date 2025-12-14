@@ -36,3 +36,12 @@ stm32f767_game_console\stm32f7xx_it.o: ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32
 stm32f767_game_console\stm32f7xx_it.o: D:\keil5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdio.h
 stm32f767_game_console\stm32f7xx_it.o: D:\keil5\ARM\ARM_Compiler_5.06u7\Bin\..\include\string.h
 stm32f767_game_console\stm32f7xx_it.o: ../Core/Inc/stm32f7xx_it.h
+stm32f767_game_console\stm32f7xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+stm32f767_game_console\stm32f7xx_it.o: ../Core/Inc/FreeRTOSConfig.h
+stm32f767_game_console\stm32f7xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+stm32f767_game_console\stm32f7xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+stm32f767_game_console\stm32f7xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+stm32f767_game_console\stm32f7xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM7/r0p1/portmacro.h
+stm32f767_game_console\stm32f7xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+stm32f767_game_console\stm32f7xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+stm32f767_game_console\stm32f7xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h

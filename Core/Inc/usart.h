@@ -41,9 +41,10 @@ extern UART_HandleTypeDef huart1;
 void MX_USART1_UART_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-#define USART_REC_MAXLEN  			1024  	
+#define USART_BUF_MAXLEN  			1024  	
 	  	
-extern uint8_t  USART_RX_BUF[USART_REC_MAXLEN]; 
+extern uint8_t  USART_RX_BUF[USART_BUF_MAXLEN]; 
+extern uint8_t  USART_TX_BUF[USART_BUF_MAXLEN]; 
 extern uint32_t USART_RX_LEN;         	
 
 /* USER CODE END Prototypes */

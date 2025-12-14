@@ -1,30 +1,31 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2025 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file           : main.c
+ * @brief          : Main program body
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2025 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "cmsis_os.h"
 #include "usart.h"
-#include "usb_otg.h"
+#include "usb_host.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "cli.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -51,6 +52,7 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MPU_Config(void);
+void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -92,19 +94,42 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_USB_OTG_FS_HCD_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-	 LED_Init();
+  LED_Init();
   /* USER CODE END 2 */
+
+  /* Init scheduler */
+  osKernelInitialize();
+
+  /* Call init function for freertos objects (in cmsis_os2.c) */
+  MX_FREERTOS_Init();
+
+  /* Start scheduler */
+  osKernelStart();
+
+  /* We should never get here as control is now taken by the scheduler */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_1);
-    HAL_Delay(2000);
-    printf("hello world!\n");
+    if (USART_RX_LEN > 0)
+    {
+      uint32_t retlen = cli_parser(USART_RX_BUF, USART_RX_LEN, USART_TX_BUF, USART_BUF_MAXLEN);
+      if (retlen > 0)
+      {
+        printf("%s", USART_TX_BUF);
+      }
+      memset(USART_RX_BUF, 0, USART_BUF_MAXLEN);
+      memset(USART_TX_BUF, 0, USART_BUF_MAXLEN);
+      USART_RX_LEN = 0;
+    }
+    else
+    {
+      HAL_Delay(1000);
+      HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_1);
+    }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
