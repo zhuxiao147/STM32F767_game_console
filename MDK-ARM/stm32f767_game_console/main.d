@@ -62,7 +62,7 @@ stm32f767_game_console/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\Third\tinyusb\src\class\hid\hid_host.h \
   ..\Third\tinyusb\src\class\hid\hid.h ..\Third\tinyusb\bsp\board_api.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS_V2\cmsis_os.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS_V2\cmsis_os2.h \
   ..\Core\Inc\usart.h ..\USB_HOST\App\usb_host.h ..\Core\Inc\gpio.h \
   ..\APP\cli\cli.h

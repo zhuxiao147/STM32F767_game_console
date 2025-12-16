@@ -50,8 +50,8 @@ TU_ATTR_WEAK void tusb_time_delay_ms_api(uint32_t ms) {
   osal_task_delay(ms);
 #else
   // delay using millis() (if implemented) and/or frame number if possible
-  const uint32_t time_ms = tusb_time_millis_api();
-  while ((tusb_time_millis_api() - time_ms) < ms) {}
+  const uint32_t time_ms = ();
+  while ((tusb_time_millis_api() - time_mtusb_time_millis_apis) < ms) {}
 #endif
 }
 

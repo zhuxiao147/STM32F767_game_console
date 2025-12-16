@@ -38,7 +38,7 @@ extern "C" {
 #include "stdbool.h"
 
 #include "tusb.h"
-
+#include "bsp/board_api.h"
 
 /* USER CODE END Includes */
 

@@ -67,28 +67,31 @@ typedef struct TU_ATTR_PACKED
 {
   uint8_t x, y, z, rz; // joystick
 
-  struct {
-    uint8_t dpad     : 4; // (hat format, 0x08 is released, 0=N, 1=NE, 2=E, 3=SE, 4=S, 5=SW, 6=W, 7=NW)
-    uint8_t square   : 1; // west
-    uint8_t cross    : 1; // south
-    uint8_t circle   : 1; // east
+  struct
+  {
+    uint8_t dpad : 4;     // (hat format, 0x08 is released, 0=N, 1=NE, 2=E, 3=SE, 4=S, 5=SW, 6=W, 7=NW)
+    uint8_t square : 1;   // west
+    uint8_t cross : 1;    // south
+    uint8_t circle : 1;   // east
     uint8_t triangle : 1; // north
   };
 
-  struct {
-    uint8_t l1     : 1;
-    uint8_t r1     : 1;
-    uint8_t l2     : 1;
-    uint8_t r2     : 1;
-    uint8_t share  : 1;
+  struct
+  {
+    uint8_t l1 : 1;
+    uint8_t r1 : 1;
+    uint8_t l2 : 1;
+    uint8_t r2 : 1;
+    uint8_t share : 1;
     uint8_t option : 1;
-    uint8_t l3     : 1;
-    uint8_t r3     : 1;
+    uint8_t l3 : 1;
+    uint8_t r3 : 1;
   };
 
-  struct {
-    uint8_t ps      : 1; // playstation button
-    uint8_t tpad    : 1; // track pad click
+  struct
+  {
+    uint8_t ps : 1;      // playstation button
+    uint8_t tpad : 1;    // track pad click
     uint8_t counter : 6; // +1 each report
   };
 
@@ -105,7 +108,8 @@ typedef struct TU_ATTR_PACKED
 
 } sony_ds4_report_t;
 
-typedef struct TU_ATTR_PACKED {
+typedef struct TU_ATTR_PACKED
+{
   // First 16 bits set what data is pertinent in this structure (1 = set; 0 = not set)
   uint8_t set_rumble : 1;
   uint8_t set_led : 1;
@@ -150,11 +154,11 @@ static inline bool is_sony_ds4(uint8_t dev_addr)
   uint16_t vid, pid;
   tuh_vid_pid_get(dev_addr, &vid, &pid);
 
-  return ( (vid == 0x054c && (pid == 0x09cc || pid == 0x05c4)) // Sony DualShock4
-           || (vid == 0x0f0d && pid == 0x005e)                 // Hori FC4
-           || (vid == 0x0f0d && pid == 0x00ee)                 // Hori PS4 Mini (PS4-099U)
-           || (vid == 0x1f4f && pid == 0x1002)                 // ASW GG xrd controller
-         );
+  return ((vid == 0x054c && (pid == 0x09cc || pid == 0x05c4)) // Sony DualShock4
+          || (vid == 0x0f0d && pid == 0x005e)                 // Hori FC4
+          || (vid == 0x0f0d && pid == 0x00ee)                 // Hori PS4 Mini (PS4-099U)
+          || (vid == 0x1f4f && pid == 0x1002)                 // ASW GG xrd controller
+  );
 }
 
 //--------------------------------------------------------------------+
@@ -169,7 +173,7 @@ void hid_app_task(void)
     static uint32_t start_ms = 0;
 
     uint32_t current_time_ms = board_millis();
-    if ( current_time_ms - start_ms >= interval_ms)
+    if (current_time_ms - start_ms >= interval_ms)
     {
       start_ms = current_time_ms;
 
@@ -191,7 +195,7 @@ void hid_app_task(void)
 // can be used to parse common/simple enough descriptor.
 // Note: if report descriptor length > CFG_TUH_ENUMERATION_BUFSIZE, it will be skipped
 // therefore report_desc = NULL, desc_len = 0
-void tuh_hid_mount_cb(uint8_t dev_addr, uint8_t instance, uint8_t const* desc_report, uint16_t desc_len)
+void tuh_hid_mount_cb(uint8_t dev_addr, uint8_t instance, uint8_t const *desc_report, uint16_t desc_len)
 {
   (void)desc_report;
   (void)desc_len;
@@ -202,7 +206,7 @@ void tuh_hid_mount_cb(uint8_t dev_addr, uint8_t instance, uint8_t const* desc_re
   printf("VID = %04x, PID = %04x\r\n", vid, pid);
 
   // Sony DualShock 4 [CUH-ZCT2x]
-  if ( is_sony_ds4(dev_addr) )
+  if (is_sony_ds4(dev_addr))
   {
     if (!ds4_mounted)
     {
@@ -214,11 +218,22 @@ void tuh_hid_mount_cb(uint8_t dev_addr, uint8_t instance, uint8_t const* desc_re
     }
     // request to receive report
     // tuh_hid_report_received_cb() will be invoked when report is available
-    if ( !tuh_hid_receive_report(dev_addr, instance) )
+    if (!tuh_hid_receive_report(dev_addr, instance))
     {
       printf("Error: cannot request to receive report\r\n");
     }
   }
+
+
+    if (!tuh_hid_receive_report(dev_addr, instance))
+    {
+      printf("Error: cannot request to receive report\r\n");
+    }
+    else
+    {
+      printf("Report received\r\n");
+    }
+  
 }
 
 // Invoked when device with hid interface is un-mounted
@@ -232,31 +247,33 @@ void tuh_hid_umount_cb(uint8_t dev_addr, uint8_t instance)
 }
 
 // check if different than 2
-static inline bool diff_than_2(uint8_t x, uint8_t y) {
+static inline bool diff_than_2(uint8_t x, uint8_t y)
+{
   return (x - y > 2) || (y - x > 2);
 }
 
 // check if 2 reports are different enough
-static bool diff_report(sony_ds4_report_t const* rpt1, sony_ds4_report_t const* rpt2) {
+static bool diff_report(sony_ds4_report_t const *rpt1, sony_ds4_report_t const *rpt2)
+{
   bool result;
 
   // x, y, z, rz must different than 2 to be counted
-  result = diff_than_2(rpt1->x, rpt2->x) || diff_than_2(rpt1->y , rpt2->y ) ||
+  result = diff_than_2(rpt1->x, rpt2->x) || diff_than_2(rpt1->y, rpt2->y) ||
            diff_than_2(rpt1->z, rpt2->z) || diff_than_2(rpt1->rz, rpt2->rz);
 
   // check the rest with mem compare
-  result |= memcmp(&rpt1->rz + 1, &rpt2->rz + 1, sizeof(sony_ds4_report_t)-6);
+  result |= memcmp(&rpt1->rz + 1, &rpt2->rz + 1, sizeof(sony_ds4_report_t) - 6);
 
   return result;
 }
 
-static void process_sony_ds4(uint8_t const* report, uint16_t len)
+static void process_sony_ds4(uint8_t const *report, uint16_t len)
 {
   (void)len;
-  const char* dpad_str[] = { "N", "NE", "E", "SE", "S", "SW", "W", "NW", "none" };
+  const char *dpad_str[] = {"N", "NE", "E", "SE", "S", "SW", "W", "NW", "none"};
 
   // previous report used to compare for changes
-  static sony_ds4_report_t prev_report = { 0 };
+  static sony_ds4_report_t prev_report = {0};
 
   uint8_t const report_id = report[0];
   report++;
@@ -274,28 +291,42 @@ static void process_sony_ds4(uint8_t const* report, uint16_t len)
     // only print if changes since it is polled ~ 5ms
     // Since count+1 after each report and  x, y, z, rz fluctuate within 1 or 2
     // We need more than memcmp to check if report is different enough
-    if ( diff_report(&prev_report, &ds4_report) )
+    if (diff_report(&prev_report, &ds4_report))
     {
       printf("(x, y, z, rz) = (%u, %u, %u, %u)\r\n", ds4_report.x, ds4_report.y, ds4_report.z, ds4_report.rz);
       printf("DPad = %s ", dpad_str[ds4_report.dpad]);
 
-      if (ds4_report.square   ) printf("Square ");
-      if (ds4_report.cross    ) printf("Cross ");
-      if (ds4_report.circle   ) printf("Circle ");
-      if (ds4_report.triangle ) printf("Triangle ");
+      if (ds4_report.square)
+        printf("Square ");
+      if (ds4_report.cross)
+        printf("Cross ");
+      if (ds4_report.circle)
+        printf("Circle ");
+      if (ds4_report.triangle)
+        printf("Triangle ");
 
-      if (ds4_report.l1       ) printf("L1 ");
-      if (ds4_report.r1       ) printf("R1 ");
-      if (ds4_report.l2       ) printf("L2 ");
-      if (ds4_report.r2       ) printf("R2 ");
+      if (ds4_report.l1)
+        printf("L1 ");
+      if (ds4_report.r1)
+        printf("R1 ");
+      if (ds4_report.l2)
+        printf("L2 ");
+      if (ds4_report.r2)
+        printf("R2 ");
 
-      if (ds4_report.share    ) printf("Share ");
-      if (ds4_report.option   ) printf("Option ");
-      if (ds4_report.l3       ) printf("L3 ");
-      if (ds4_report.r3       ) printf("R3 ");
+      if (ds4_report.share)
+        printf("Share ");
+      if (ds4_report.option)
+        printf("Option ");
+      if (ds4_report.l3)
+        printf("L3 ");
+      if (ds4_report.r3)
+        printf("R3 ");
 
-      if (ds4_report.ps       ) printf("PS ");
-      if (ds4_report.tpad     ) printf("TPad ");
+      if (ds4_report.ps)
+        printf("PS ");
+      if (ds4_report.tpad)
+        printf("TPad ");
 
       printf("\r\n");
     }
@@ -309,13 +340,20 @@ static void process_sony_ds4(uint8_t const* report, uint16_t len)
 }
 
 // Invoked when received report from device via interrupt endpoint
-void tuh_hid_report_received_cb(uint8_t dev_addr, uint8_t instance, uint8_t const *report, uint16_t len) {
-  if (is_sony_ds4(dev_addr)) {
+void tuh_hid_report_received_cb(uint8_t dev_addr, uint8_t instance, uint8_t const *report, uint16_t len)
+{
+  if (is_sony_ds4(dev_addr))
+  {
     process_sony_ds4(report, len);
   }
 
   // continue to request to receive report
-  if (!tuh_hid_receive_report(dev_addr, instance)) {
+  if (!tuh_hid_receive_report(dev_addr, instance))
+  {
     printf("Error: cannot request to receive report\r\n");
+  }
+  else
+  {
+    printf("Report received\r\n");
   }
 }

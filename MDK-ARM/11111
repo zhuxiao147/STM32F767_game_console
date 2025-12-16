@@ -1,129 +1,439 @@
-/* USER CODE BEGIN Header */
-/**
-  ******************************************************************************
-  * @file    usb_otg.c
-  * @brief   This file provides code for the configuration
-  *          of the USB_OTG instances.
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2025 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
-/* USER CODE END Header */
-/* Includes ------------------------------------------------------------------*/
-#include "usb_otg.h"
 
-/* USER CODE BEGIN 0 */
+[23:27:33.551]收←◆OTG_FS_IRQHandler
+[0:0:0] USBH DEVICE REMOVED
+[0:0:0] unplugged address = 1
+  HIDh close addr = 1 index = 0
+HID device address = 1, instance = 0 is unmounted
+  HIDh close addr = 1 index = 1
+HID device address = 1, instance = 1 is unmounted
+  HIDh close addr = 1 index = 2
+HID device address = 1, instance = 2 is unmounted
 
-/* USER CODE END 0 */
+[23:27:35.679]收←◆OTG_FS_IRQHandler
+[0:] USBH Device Attach
 
-HCD_HandleTypeDef hhcd_USB_OTG_FS;
+[23:27:35.883]收←◆OTG_FS_IRQHandler
+Full Speed
+[0:0] Open EP0 with Size = 8
+Get 8 byte of Device Descriptor
+[0:0] Get Descriptor: 80 06 00 01 00 00 08 00 
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:0] on EP 00 with 8 bytes: OK
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:0] on EP 80 with 8 bytes: OK
+[0:0] Control data:
+  0000:  12 01 00 02 00 00 00 08                          |........|
+OTG_FS_IRQHandler
+[:0] on EP 00 with 0 bytes: OK
 
-/* USB_OTG_FS init function */
+Set Address = 1
+[0:0] Set Address: 00 05 01 00 00 00 00 00 
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:0] on EP 00 with 8 bytes: OK
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:0] on EP 80 with 0 bytes: OK
 
-void MX_USB_OTG_FS_HCD_Init(void)
-{
+[0:1] Open EP0 with Size = 8
+Get Device Descriptor
+[0:1] Get Descriptor: 80 06 00 01 00 00 12 00 
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 00 with 8 bytes: OK
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 80 with 18 bytes: OK
+[0:1] Control data:
+  0000:  12 01 00 02 00 00 00 08 6D 04 2B C5 11 12 01 02  |........m.+.....|
+  0010:  00 01                                            |..|
+OTG_FS_IRQHandler
+[:1] on EP 00 with 0 bytes: OK
 
-  /* USER CODE BEGIN USB_OTG_FS_Init 0 */
+[0:1] Get Descriptor: 80 06 00 03 00 00 02 00 
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 00 with 8 bytes: OK
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 80 with 2 bytes: OK
+[0:1] Control data:
+  0000:  04 03                                            |..|
+OTG_FS_IRQHandler
+[:1] on EP 00 with 0 bytes: OK
 
-  /* USER CODE END USB_OTG_FS_Init 0 */
+[0:1] Get Descriptor: 80 06 00 03 00 00 04 00 
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 00 with 8 bytes: OK
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 80 with 4 bytes: OK
+[0:1] Control data:
+  0000:  04 03 09 04                                      |....|
+OTG_FS_IRQHandler
+[:1] on EP 00 with 0 bytes: OK
 
-  /* USER CODE BEGIN USB_OTG_FS_Init 1 */
+[0:1] Get Descriptor: 80 06 01 03 09 04 02 00 
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 00 with 8 bytes: OK
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 80 with 2 bytes: OK
+[0:1] Control data:
+  0000:  12 03                                            |..|
+OTG_FS_IRQHandler
+[:1] on EP 00 with 0 bytes: OK
 
-  /* USER CODE END USB_OTG_FS_Init 1 */
-  hhcd_USB_OTG_FS.Instance = USB_OTG_FS;
-  hhcd_USB_OTG_FS.Init.Host_channels = 8;
-  hhcd_USB_OTG_FS.Init.speed = HCD_SPEED_FULL;
-  hhcd_USB_OTG_FS.Init.dma_enable = DISABLE;
-  hhcd_USB_OTG_FS.Init.phy_itface = HCD_PHY_EMBEDDED;
-  hhcd_USB_OTG_FS.Init.Sof_enable = DISABLE;
-  if (HAL_HCD_Init(&hhcd_USB_OTG_FS) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN USB_OTG_FS_Init 2 */
+[0:1] Get Descriptor: 80 06 01 03 09 04 12 00 
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 00 with 8 bytes: OK
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 80 with 18 bytes: OK
+[0:1] Control data:
+  0000:  12 03 4C 00 6F 00 67 00 69 00 74 00 65 00 63 00  |..L.o.g.i.t.e.c.|
+  0010:  68 00                                            |h.|
+OTG_FS_IRQHandler
+[:1] on EP 00 with 0 bytes: OK
 
-  /* USER CODE END USB_OTG_FS_Init 2 */
+[0:1] Get Descriptor: 80 06 02 03 09 04 02 00 
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 00 with 8 bytes: OK
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 80 with 2 bytes: OK
+[0:1] Control data:
+  0000:  1A 03                                            |..|
+OTG_FS_IRQHandler
+[:1] on EP 00 with 0 bytes: OK
 
-}
+[0:1] Get Descriptor: 80 06 02 03 09 04 1A 00 
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 00 with 8 bytes: OK
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 80 with 26 bytes: OK
+[0:1] Control data:
+  0000:  1A 03 55 00 53 00 42 00 20 00 52 00 65 00 63 00  |..U.S.B. .R.e.c.|
+  0010:  65 00 69 00 76 00 65 00 72 00                    |e.i.v.e.r.|
+OTG_FS_IRQHandler
+[:1] on EP 00 with 0 bytes: OK
 
-void HAL_HCD_MspInit(HCD_HandleTypeDef* hcdHandle)
-{
+Get Configuration[0] Descriptor (9 bytes)
+[0:1] Get Descriptor: 80 06 00 02 00 00 09 00 
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 00 with 8 bytes: OK
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 80 with 9 bytes: OK
+[0:1] Control data:
+  0000:  09 02 54 00 03 01 04 A0 31                       |..T....?|
+OTG_FS_IRQHandler
+[:1] on EP 00 with 0 bytes: OK
 
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
-  RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
-  if(hcdHandle->Instance==USB_OTG_FS)
-  {
-  /* USER CODE BEGIN USB_OTG_FS_MspInit 0 */
+Get Configuration[0] Descriptor
+[0:1] Get Descriptor: 80 06 00 02 00 00 54 00 
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 00 with 8 bytes: OK
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 80 with 84 bytes: OK
+[0:1] Control data:
+  0000:  09 02 54 00 03 01 04 A0 31 09 04 00 00 01 03 01  |..T....?.......|
+  0010:  01 00 09 21 11 01 00 01 22 3B 00 07 05 81 03 08  |...!....";......|
+  0020:  00 08 09 04 01 00 01 03 01 02 00 09 21 11 01 00  |............!...|
+  0030:  01 22 94 00 07 05 82 03 08 00 02 09 04 02 00 01  |."..............|
+  0040:  03 00 00 00 09 21 11 01 00 01 22 5D 00 07 05 83  |.....!...."]...億
+  0050:  03 20 00 02                                      |. ..|
+OTG_FS_IRQHandler
+[:1] on EP 00 with 0 bytes: OK
 
-  /* USER CODE END USB_OTG_FS_MspInit 0 */
+Set Configuration = 1
+[0:1] Set Configuration: 00 09 01 00 00 00 00 00 
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 00 with 8 bytes: OK
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 80 with 0 bytes: OK
+[1] Aborted transfer on EP 01
+[1] Aborted transfer on EP 81
+[1] Aborted transfer on EP 02
+[1] Aborted transfer on EP 82
+[1] Aborted transfer on EP 03
+[1] Aborted transfer on EP 83
+[1] Aborted transfer on EP 04
+[1] Aborted transfer on EP 84
+[1] Aborted transfer on EP 05
+[1] Aborted transfer on EP 85
+[1] Aborted transfer on EP 06
+[1] Aborted transfer on EP 86
+[1] Aborted transfer on EP 07
+[1] Aborted transfer on EP 87
+[1] Aborted transfer on EP 08
+[1] Aborted transfer on EP 88
+[1] Aborted transfer on EP 09
+[1] Aborted transfer on EP 89
+[1] Aborted transfer on EP 0A
+[1] Aborted transfer on EP 8A
+[1] Aborted transfer on EP 0B
+[1] Aborted transfer on EP 8B
+[1] Aborted transfer on EP 0C
+[1] Aborted transfer on EP 8C
+[1] Aborted transfer on EP 0D
+[1] Aborted transfer on EP 8D
+[1] Aborted transfer on EP 0E
+[1] Aborted transfer on EP 8E
+[1] Aborted transfer on EP 0F
+[1] Aborted transfer on EP 8F
 
-  /** Initializes the peripherals clock
-  */
-    PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_CLK48;
-    PeriphClkInitStruct.Clk48ClockSelection = RCC_CLK48SOURCE_PLL;
-    if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
-    {
-      Error_Handler();
-    }
+Device configured
+Parsing Configuration descriptor (wTotalLength = 84)
+[1] HID opening Interface 0
+  Open EP 81 with Size = 8
+  HID opened
+[1] HID opening Interface 1
+  Open EP 82 with Size = 8
+  HID opened
+[1] HID opening Interface 2
+  Open EP 83 with Size = 32
+  HID opened
+HID set config: itf = 0
+HID Set Idle 
+[0:1] Class Request: 21 0A 00 00 00 00 00 00 
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 00 with 8 bytes: OK
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 80 with 0 bytes: OK
 
-    __HAL_RCC_GPIOA_CLK_ENABLE();
-    /**USB_OTG_FS GPIO Configuration
-    PA9     ------> USB_OTG_FS_VBUS
-    PA11     ------> USB_OTG_FS_DM
-    PA12     ------> USB_OTG_FS_DP
-    */
-    GPIO_InitStruct.Pin = GPIO_PIN_9;
-    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+HID Set Protocol = 0
+[0:1] Class Request: 21 0B 00 00 00 00 00 00 
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 00 with 8 bytes: OK
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 80 with 0 bytes: OK
 
-    GPIO_InitStruct.Pin = GPIO_PIN_11|GPIO_PIN_12;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-    GPIO_InitStruct.Alternate = GPIO_AF10_OTG_FS;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+HID Get Report Descriptor
+[0:1] Get Descriptor: 81 06 00 22 00 00 3B 00 
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 00 with 8 bytes: OK
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 80 with 59 bytes: OK
+[0:1] Control data:
+  0000:  05 01 09 06 A1 01 95 08 75 01 15 00 25 01 05 07  |....?..u...%...|
+  0010:  19 E0 29 E7 81 02 81 03 95 05 05 08 19 01 29 05  |..)...........).|
+  0020:  91 02 95 01 75 03 91 01 95 06 75 08 15 00 26 FF  |....u.....u...&|
+  0030:  00 05 07 19 00 2A FF 00 81 00 C0                 |.....*....|
+OTG_FS_IRQHandler
+[:1] on EP 00 with 0 bytes: OK
 
-    /* USB_OTG_FS clock enable */
-    __HAL_RCC_USB_OTG_FS_CLK_ENABLE();
-  /* USER CODE BEGIN USB_OTG_FS_MspInit 1 */
+HID device address = 1, instance = 0 is mounted
+VID = 046d, PID = c52b
+HID set config: itf = 1
+HID Set Idle 
+[0:1] Class Request: 21 0A 00 00 01 00 00 00 
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 00 with 8 bytes: OK
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 80 with 0 bytes: STALLED
+[0:1] Control STALLED, xferred_bytes = 0
+21 0A 00 00 01 00 00 00 
 
-  /* USER CODE END USB_OTG_FS_MspInit 1 */
-  }
-}
+HID Set Protocol = 0
+[0:1] Class Request: 21 0B 00 00 01 00 00 00 
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 00 with 8 bytes: OK
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 80 with 0 bytes: OK
 
-void HAL_HCD_MspDeInit(HCD_HandleTypeDef* hcdHandle)
-{
+HID Get Report Descriptor
+[0:1] Get Descriptor: 81 06 00 22 01 00 94 00 
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 00 with 8 bytes: OK
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 80 with 148 bytes: OK
+[0:1] Control data:
+  0000:  05 01 09 02 A1 01 85 02 09 01 A1 00 95 10 75 01  |....?....?..u.|
+  0010:  15 00 25 01 05 09 19 01 29 10 81 02 95 02 75 0C  |..%.....).....u.|
+  0020:  16 01 F8 26 FF 07 05 01 09 30 09 31 81 06 95 01  |..?....0.1....|
+  0030:  75 08 15 81 25 7F 09 38 81 06 95 01 05 0C 0A 38  |u...%..8.......8|
+  0040:  02 81 06 C0 C0 05 0C 09 01 A1 01 85 03 95 02 75  |.........?....u|
+  0050:  10 15 01 26 FF 02 19 01 2A FF 02 81 00 C0 05 01  |...&...*......|
+  0060:  09 80 A1 01 85 04 95 01 75 02 15 01 25 03 09 82  |..?....u...%...|
+  0070:  09 81 09 83 81 00 75 06 81 03 C0 06 BC FF 09 88  |...?.u.....?..|
+  0080:  A1 01 85 08 95 01 75 08 15 01 26 FF 00 19 01 29  |?....u...&...)|
+  0090:  FF 81 00 C0                                      |...|
+OTG_FS_IRQHandler
+[:1] on EP 00 with 0 bytes: OK
 
-  if(hcdHandle->Instance==USB_OTG_FS)
-  {
-  /* USER CODE BEGIN USB_OTG_FS_MspDeInit 0 */
+HID device address = 1, instance = 1 is mounted
+VID = 046d, PID = c52b
+HID set config: itf = 2
+HID Set Idle 
+[0:1] Class Request: 21 0A 00 00 02 00 00 00 
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 00 with 8 bytes: OK
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 80 with 0 bytes: STALLED
+[0:1] Control STALLED, xferred_bytes = 0
+21 0A 00 00 02 00 00 00 
 
-  /* USER CODE END USB_OTG_FS_MspDeInit 0 */
-    /* Peripheral clock disable */
-    __HAL_RCC_USB_OTG_FS_CLK_DISABLE();
+HID Get Report Descriptor
+[0:1] Get Descriptor: 81 06 00 22 02 00 5D 00 
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 00 with 8 bytes: OK
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+OTG_FS_IRQHandler
+[:1] on EP 80 with 93 bytes: OK
+[0:1] Control data:
+  0000:  06 00 FF 09 01 A1 01 85 10 95 06 75 08 15 00 26  |....?....u...&|
+  0010:  FF 00 09 01 81 00 09 01 91 00 C0 06 00 FF 09 02  |..............|
+  0020:  A1 01 85 11 95 13 75 08 15 00 26 FF 00 09 02 81  |?....u...&....|
+  0030:  00 09 02 91 00 C0 06 00 FF 09 04 A1 01 85 20 95  |..........?. .|
+  0040:  0E 75 08 15 00 26 FF 00 09 41 81 00 09 41 91 00  |.u...&..A...A..|
+  0050:  85 21 95 1F 09 42 81 00 09 42 91 00 C0           |.!...B...B...|
+OTG_FS_IRQHandler
+[:1] on EP 00 with 0 bytes: OK
 
-    /**USB_OTG_FS GPIO Configuration
-    PA9     ------> USB_OTG_FS_VBUS
-    PA11     ------> USB_OTG_FS_DM
-    PA12     ------> USB_OTG_FS_DP
-    */
-    HAL_GPIO_DeInit(GPIOA, GPIO_PIN_9|GPIO_PIN_11|GPIO_PIN_12);
-
-  /* USER CODE BEGIN USB_OTG_FS_MspDeInit 1 */
-
-  /* USER CODE END USB_OTG_FS_MspDeInit 1 */
-  }
-}
-
-/* USER CODE BEGIN 1 */
-
-/* USER CODE END 1 */
+HID device address = 1, instance = 2 is mounted
+VID = 046d, PID = c52b

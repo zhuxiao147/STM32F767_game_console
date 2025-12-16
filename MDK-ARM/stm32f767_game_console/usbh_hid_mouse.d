@@ -68,8 +68,8 @@ stm32f767_game_console/usbh_hid_mouse.o: \
   ..\Third\tinyusb\src\class\hid\hid_host.h \
   ..\Third\tinyusb\src\class\hid\hid.h ..\Third\tinyusb\bsp\board_api.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS_V2\cmsis_os.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS_V2\cmsis_os2.h \
   ..\Middlewares\ST\STM32_USB_Host_Library\Core\Inc\usbh_def.h \
   ..\Middlewares\ST\STM32_USB_Host_Library\Core\Inc\usbh_ioreq.h \
   ..\Middlewares\ST\STM32_USB_Host_Library\Core\Inc\usbh_pipes.h \

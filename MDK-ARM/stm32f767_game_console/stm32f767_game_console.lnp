@@ -34,7 +34,7 @@
 "stm32f767_game_console\stream_buffer.o"
 "stm32f767_game_console\tasks.o"
 "stm32f767_game_console\timers.o"
-"stm32f767_game_console\cmsis_os.o"
+"stm32f767_game_console\cmsis_os2.o"
 "stm32f767_game_console\heap_4.o"
 "stm32f767_game_console\port.o"
 "stm32f767_game_console\usbh_core.o"

@@ -11,7 +11,7 @@ uint8_t cli_outbuffer[CLI_OUTBUFFER_SIZE];
 uint32_t cli_help(uint32_t argc, uint8_t **argv)
 {
     memset((char *)cli_outbuffer, 0, CLI_OUTBUFFER_SIZE);
-    sprintf((char *)cli_outbuffer, "help:\n  help - 显示帮助信息\n  version - 显示版本信息\n");
+    sprintf((char *)cli_outbuffer, "help:\n  help - \n  version - \n");
     return 54;
 }
 
