@@ -1,439 +1,342 @@
+/**
+  ******************************************************************************
+  * @file    usbh_hid.h
+  * @author  MCD Application Team
+  * @brief   This file contains all the prototypes for the usbh_hid.c
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2015 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
 
-[23:27:33.551]收←◆OTG_FS_IRQHandler
-[0:0:0] USBH DEVICE REMOVED
-[0:0:0] unplugged address = 1
-  HIDh close addr = 1 index = 0
-HID device address = 1, instance = 0 is unmounted
-  HIDh close addr = 1 index = 1
-HID device address = 1, instance = 1 is unmounted
-  HIDh close addr = 1 index = 2
-HID device address = 1, instance = 2 is unmounted
+/* Define to prevent recursive  ----------------------------------------------*/
+#ifndef __USBH_HID_H
+#define __USBH_HID_H
 
-[23:27:35.679]收←◆OTG_FS_IRQHandler
-[0:] USBH Device Attach
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-[23:27:35.883]收←◆OTG_FS_IRQHandler
-Full Speed
-[0:0] Open EP0 with Size = 8
-Get 8 byte of Device Descriptor
-[0:0] Get Descriptor: 80 06 00 01 00 00 08 00 
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:0] on EP 00 with 8 bytes: OK
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:0] on EP 80 with 8 bytes: OK
-[0:0] Control data:
-  0000:  12 01 00 02 00 00 00 08                          |........|
-OTG_FS_IRQHandler
-[:0] on EP 00 with 0 bytes: OK
+/* Includes ------------------------------------------------------------------*/
+#include "usbh_core.h"
+#include "usbh_hid_mouse.h"
+#include "usbh_hid_keybd.h"
 
-Set Address = 1
-[0:0] Set Address: 00 05 01 00 00 00 00 00 
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:0] on EP 00 with 8 bytes: OK
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:0] on EP 80 with 0 bytes: OK
+/** @addtogroup USBH_LIB
+  * @{
+  */
 
-[0:1] Open EP0 with Size = 8
-Get Device Descriptor
-[0:1] Get Descriptor: 80 06 00 01 00 00 12 00 
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 00 with 8 bytes: OK
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 80 with 18 bytes: OK
-[0:1] Control data:
-  0000:  12 01 00 02 00 00 00 08 6D 04 2B C5 11 12 01 02  |........m.+.....|
-  0010:  00 01                                            |..|
-OTG_FS_IRQHandler
-[:1] on EP 00 with 0 bytes: OK
+/** @addtogroup USBH_CLASS
+  * @{
+  */
 
-[0:1] Get Descriptor: 80 06 00 03 00 00 02 00 
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 00 with 8 bytes: OK
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 80 with 2 bytes: OK
-[0:1] Control data:
-  0000:  04 03                                            |..|
-OTG_FS_IRQHandler
-[:1] on EP 00 with 0 bytes: OK
+/** @addtogroup USBH_HID_CLASS
+  * @{
+  */
 
-[0:1] Get Descriptor: 80 06 00 03 00 00 04 00 
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 00 with 8 bytes: OK
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 80 with 4 bytes: OK
-[0:1] Control data:
-  0000:  04 03 09 04                                      |....|
-OTG_FS_IRQHandler
-[:1] on EP 00 with 0 bytes: OK
+/** @defgroup USBH_HID_CORE
+  * @brief This file is the Header file for usbh_hid.c
+  * @{
+  */
 
-[0:1] Get Descriptor: 80 06 01 03 09 04 02 00 
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 00 with 8 bytes: OK
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 80 with 2 bytes: OK
-[0:1] Control data:
-  0000:  12 03                                            |..|
-OTG_FS_IRQHandler
-[:1] on EP 00 with 0 bytes: OK
 
-[0:1] Get Descriptor: 80 06 01 03 09 04 12 00 
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 00 with 8 bytes: OK
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 80 with 18 bytes: OK
-[0:1] Control data:
-  0000:  12 03 4C 00 6F 00 67 00 69 00 74 00 65 00 63 00  |..L.o.g.i.t.e.c.|
-  0010:  68 00                                            |h.|
-OTG_FS_IRQHandler
-[:1] on EP 00 with 0 bytes: OK
+/** @defgroup USBH_HID_CORE_Exported_Types
+  * @{
+  */
 
-[0:1] Get Descriptor: 80 06 02 03 09 04 02 00 
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 00 with 8 bytes: OK
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 80 with 2 bytes: OK
-[0:1] Control data:
-  0000:  1A 03                                            |..|
-OTG_FS_IRQHandler
-[:1] on EP 00 with 0 bytes: OK
+#define HID_MIN_POLL                                10U
+#define HID_REPORT_SIZE                             16U
+#define HID_MAX_USAGE                               10U
+#define HID_MAX_NBR_REPORT_FMT                      10U
+#define HID_QUEUE_SIZE                              10U
 
-[0:1] Get Descriptor: 80 06 02 03 09 04 1A 00 
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 00 with 8 bytes: OK
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 80 with 26 bytes: OK
-[0:1] Control data:
-  0000:  1A 03 55 00 53 00 42 00 20 00 52 00 65 00 63 00  |..U.S.B. .R.e.c.|
-  0010:  65 00 69 00 76 00 65 00 72 00                    |e.i.v.e.r.|
-OTG_FS_IRQHandler
-[:1] on EP 00 with 0 bytes: OK
+#define  HID_ITEM_LONG                              0xFEU
 
-Get Configuration[0] Descriptor (9 bytes)
-[0:1] Get Descriptor: 80 06 00 02 00 00 09 00 
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 00 with 8 bytes: OK
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 80 with 9 bytes: OK
-[0:1] Control data:
-  0000:  09 02 54 00 03 01 04 A0 31                       |..T....?|
-OTG_FS_IRQHandler
-[:1] on EP 00 with 0 bytes: OK
+#define  HID_ITEM_TYPE_MAIN                         0x00U
+#define  HID_ITEM_TYPE_GLOBAL                       0x01U
+#define  HID_ITEM_TYPE_LOCAL                        0x02U
+#define  HID_ITEM_TYPE_RESERVED                     0x03U
 
-Get Configuration[0] Descriptor
-[0:1] Get Descriptor: 80 06 00 02 00 00 54 00 
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 00 with 8 bytes: OK
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 80 with 84 bytes: OK
-[0:1] Control data:
-  0000:  09 02 54 00 03 01 04 A0 31 09 04 00 00 01 03 01  |..T....?.......|
-  0010:  01 00 09 21 11 01 00 01 22 3B 00 07 05 81 03 08  |...!....";......|
-  0020:  00 08 09 04 01 00 01 03 01 02 00 09 21 11 01 00  |............!...|
-  0030:  01 22 94 00 07 05 82 03 08 00 02 09 04 02 00 01  |."..............|
-  0040:  03 00 00 00 09 21 11 01 00 01 22 5D 00 07 05 83  |.....!...."]...億
-  0050:  03 20 00 02                                      |. ..|
-OTG_FS_IRQHandler
-[:1] on EP 00 with 0 bytes: OK
 
-Set Configuration = 1
-[0:1] Set Configuration: 00 09 01 00 00 00 00 00 
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 00 with 8 bytes: OK
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 80 with 0 bytes: OK
-[1] Aborted transfer on EP 01
-[1] Aborted transfer on EP 81
-[1] Aborted transfer on EP 02
-[1] Aborted transfer on EP 82
-[1] Aborted transfer on EP 03
-[1] Aborted transfer on EP 83
-[1] Aborted transfer on EP 04
-[1] Aborted transfer on EP 84
-[1] Aborted transfer on EP 05
-[1] Aborted transfer on EP 85
-[1] Aborted transfer on EP 06
-[1] Aborted transfer on EP 86
-[1] Aborted transfer on EP 07
-[1] Aborted transfer on EP 87
-[1] Aborted transfer on EP 08
-[1] Aborted transfer on EP 88
-[1] Aborted transfer on EP 09
-[1] Aborted transfer on EP 89
-[1] Aborted transfer on EP 0A
-[1] Aborted transfer on EP 8A
-[1] Aborted transfer on EP 0B
-[1] Aborted transfer on EP 8B
-[1] Aborted transfer on EP 0C
-[1] Aborted transfer on EP 8C
-[1] Aborted transfer on EP 0D
-[1] Aborted transfer on EP 8D
-[1] Aborted transfer on EP 0E
-[1] Aborted transfer on EP 8E
-[1] Aborted transfer on EP 0F
-[1] Aborted transfer on EP 8F
+#define  HID_MAIN_ITEM_TAG_INPUT                    0x08U
+#define  HID_MAIN_ITEM_TAG_OUTPUT                   0x09U
+#define  HID_MAIN_ITEM_TAG_COLLECTION               0x0AU
+#define  HID_MAIN_ITEM_TAG_FEATURE                  0x0BU
+#define  HID_MAIN_ITEM_TAG_ENDCOLLECTION            0x0CU
 
-Device configured
-Parsing Configuration descriptor (wTotalLength = 84)
-[1] HID opening Interface 0
-  Open EP 81 with Size = 8
-  HID opened
-[1] HID opening Interface 1
-  Open EP 82 with Size = 8
-  HID opened
-[1] HID opening Interface 2
-  Open EP 83 with Size = 32
-  HID opened
-HID set config: itf = 0
-HID Set Idle 
-[0:1] Class Request: 21 0A 00 00 00 00 00 00 
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 00 with 8 bytes: OK
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 80 with 0 bytes: OK
 
-HID Set Protocol = 0
-[0:1] Class Request: 21 0B 00 00 00 00 00 00 
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 00 with 8 bytes: OK
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 80 with 0 bytes: OK
+#define  HID_GLOBAL_ITEM_TAG_USAGE_PAGE             0x00U
+#define  HID_GLOBAL_ITEM_TAG_LOG_MIN                0x01U
+#define  HID_GLOBAL_ITEM_TAG_LOG_MAX                0x02U
+#define  HID_GLOBAL_ITEM_TAG_PHY_MIN                0x03U
+#define  HID_GLOBAL_ITEM_TAG_PHY_MAX                0x04U
+#define  HID_GLOBAL_ITEM_TAG_UNIT_EXPONENT          0x05U
+#define  HID_GLOBAL_ITEM_TAG_UNIT                   0x06U
+#define  HID_GLOBAL_ITEM_TAG_REPORT_SIZE            0x07U
+#define  HID_GLOBAL_ITEM_TAG_REPORT_ID              0x08U
+#define  HID_GLOBAL_ITEM_TAG_REPORT_COUNT           0x09U
+#define  HID_GLOBAL_ITEM_TAG_PUSH                   0x0AU
+#define  HID_GLOBAL_ITEM_TAG_POP                    0x0BU
 
-HID Get Report Descriptor
-[0:1] Get Descriptor: 81 06 00 22 00 00 3B 00 
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 00 with 8 bytes: OK
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 80 with 59 bytes: OK
-[0:1] Control data:
-  0000:  05 01 09 06 A1 01 95 08 75 01 15 00 25 01 05 07  |....?..u...%...|
-  0010:  19 E0 29 E7 81 02 81 03 95 05 05 08 19 01 29 05  |..)...........).|
-  0020:  91 02 95 01 75 03 91 01 95 06 75 08 15 00 26 FF  |....u.....u...&|
-  0030:  00 05 07 19 00 2A FF 00 81 00 C0                 |.....*....|
-OTG_FS_IRQHandler
-[:1] on EP 00 with 0 bytes: OK
 
-HID device address = 1, instance = 0 is mounted
-VID = 046d, PID = c52b
-HID set config: itf = 1
-HID Set Idle 
-[0:1] Class Request: 21 0A 00 00 01 00 00 00 
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 00 with 8 bytes: OK
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 80 with 0 bytes: STALLED
-[0:1] Control STALLED, xferred_bytes = 0
-21 0A 00 00 01 00 00 00 
+#define  HID_LOCAL_ITEM_TAG_USAGE                   0x00U
+#define  HID_LOCAL_ITEM_TAG_USAGE_MIN               0x01U
+#define  HID_LOCAL_ITEM_TAG_USAGE_MAX               0x02U
+#define  HID_LOCAL_ITEM_TAG_DESIGNATOR_INDEX        0x03U
+#define  HID_LOCAL_ITEM_TAG_DESIGNATOR_MIN          0x04U
+#define  HID_LOCAL_ITEM_TAG_DESIGNATOR_MAX          0x05U
+#define  HID_LOCAL_ITEM_TAG_STRING_INDEX            0x07U
+#define  HID_LOCAL_ITEM_TAG_STRING_MIN              0x08U
+#define  HID_LOCAL_ITEM_TAG_STRING_MAX              0x09U
+#define  HID_LOCAL_ITEM_TAG_DELIMITER               0x0AU
 
-HID Set Protocol = 0
-[0:1] Class Request: 21 0B 00 00 01 00 00 00 
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 00 with 8 bytes: OK
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 80 with 0 bytes: OK
 
-HID Get Report Descriptor
-[0:1] Get Descriptor: 81 06 00 22 01 00 94 00 
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 00 with 8 bytes: OK
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 80 with 148 bytes: OK
-[0:1] Control data:
-  0000:  05 01 09 02 A1 01 85 02 09 01 A1 00 95 10 75 01  |....?....?..u.|
-  0010:  15 00 25 01 05 09 19 01 29 10 81 02 95 02 75 0C  |..%.....).....u.|
-  0020:  16 01 F8 26 FF 07 05 01 09 30 09 31 81 06 95 01  |..?....0.1....|
-  0030:  75 08 15 81 25 7F 09 38 81 06 95 01 05 0C 0A 38  |u...%..8.......8|
-  0040:  02 81 06 C0 C0 05 0C 09 01 A1 01 85 03 95 02 75  |.........?....u|
-  0050:  10 15 01 26 FF 02 19 01 2A FF 02 81 00 C0 05 01  |...&...*......|
-  0060:  09 80 A1 01 85 04 95 01 75 02 15 01 25 03 09 82  |..?....u...%...|
-  0070:  09 81 09 83 81 00 75 06 81 03 C0 06 BC FF 09 88  |...?.u.....?..|
-  0080:  A1 01 85 08 95 01 75 08 15 01 26 FF 00 19 01 29  |?....u...&...)|
-  0090:  FF 81 00 C0                                      |...|
-OTG_FS_IRQHandler
-[:1] on EP 00 with 0 bytes: OK
+/* States for HID State Machine */
+typedef enum
+{
+  USBH_HID_INIT = 0,
+  USBH_HID_IDLE,
+  USBH_HID_SEND_DATA,
+  USBH_HID_BUSY,
+  USBH_HID_GET_DATA,
+  USBH_HID_SYNC,
+  USBH_HID_POLL,
+  USBH_HID_ERROR,
+}
+USBH_HID_StateTypeDef;
 
-HID device address = 1, instance = 1 is mounted
-VID = 046d, PID = c52b
-HID set config: itf = 2
-HID Set Idle 
-[0:1] Class Request: 21 0A 00 00 02 00 00 00 
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 00 with 8 bytes: OK
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 80 with 0 bytes: STALLED
-[0:1] Control STALLED, xferred_bytes = 0
-21 0A 00 00 02 00 00 00 
+typedef enum
+{
+  USBH_HID_REQ_INIT = 0,
+  USBH_HID_REQ_IDLE,
+  USBH_HID_REQ_GET_REPORT_DESC,
+  USBH_HID_REQ_GET_HID_DESC,
+  USBH_HID_REQ_SET_IDLE,
+  USBH_HID_REQ_SET_PROTOCOL,
+  USBH_HID_REQ_SET_REPORT,
 
-HID Get Report Descriptor
-[0:1] Get Descriptor: 81 06 00 22 02 00 5D 00 
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 00 with 8 bytes: OK
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-OTG_FS_IRQHandler
-[:1] on EP 80 with 93 bytes: OK
-[0:1] Control data:
-  0000:  06 00 FF 09 01 A1 01 85 10 95 06 75 08 15 00 26  |....?....u...&|
-  0010:  FF 00 09 01 81 00 09 01 91 00 C0 06 00 FF 09 02  |..............|
-  0020:  A1 01 85 11 95 13 75 08 15 00 26 FF 00 09 02 81  |?....u...&....|
-  0030:  00 09 02 91 00 C0 06 00 FF 09 04 A1 01 85 20 95  |..........?. .|
-  0040:  0E 75 08 15 00 26 FF 00 09 41 81 00 09 41 91 00  |.u...&..A...A..|
-  0050:  85 21 95 1F 09 42 81 00 09 42 91 00 C0           |.!...B...B...|
-OTG_FS_IRQHandler
-[:1] on EP 00 with 0 bytes: OK
+}
+HID_CtlStateTypeDef;
 
-HID device address = 1, instance = 2 is mounted
-VID = 046d, PID = c52b
+typedef enum
+{
+  HID_MOUSE    = 0x01,
+  HID_KEYBOARD = 0x02,
+  HID_UNKNOWN = 0xFF,
+}
+HID_TypeTypeDef;
+
+
+typedef  struct  _HID_ReportData
+{
+  uint8_t   ReportID;
+  uint8_t   ReportType;
+  uint16_t  UsagePage;
+  uint32_t  Usage[HID_MAX_USAGE];
+  uint32_t  NbrUsage;
+  uint32_t  UsageMin;
+  uint32_t  UsageMax;
+  int32_t   LogMin;
+  int32_t   LogMax;
+  int32_t   PhyMin;
+  int32_t   PhyMax;
+  int32_t   UnitExp;
+  uint32_t  Unit;
+  uint32_t  ReportSize;
+  uint32_t  ReportCnt;
+  uint32_t  Flag;
+  uint32_t  PhyUsage;
+  uint32_t  AppUsage;
+  uint32_t  LogUsage;
+}
+HID_ReportDataTypeDef;
+
+typedef  struct  _HID_ReportIDTypeDef
+{
+  uint8_t  Size;         /* Report size return by the device id            */
+  uint8_t  ReportID;     /* Report Id                                      */
+  uint8_t  Type;         /* Report Type (INPUT/OUTPUT/FEATURE)             */
+} HID_ReportIDTypeDef;
+
+typedef struct  _HID_CollectionTypeDef
+{
+  uint32_t                       Usage;
+  uint8_t                        Type;
+  struct _HID_CollectionTypeDef  *NextPtr;
+} HID_CollectionTypeDef;
+
+
+typedef  struct  _HID_AppCollectionTypeDef
+{
+  uint32_t               Usage;
+  uint8_t                Type;
+  uint8_t                NbrReportFmt;
+  HID_ReportDataTypeDef  ReportData[HID_MAX_NBR_REPORT_FMT];
+} HID_AppCollectionTypeDef;
+
+
+typedef struct _HIDDescriptor
+{
+  uint8_t   bLength;
+  uint8_t   bDescriptorType;
+  uint16_t  bcdHID;               /* indicates what endpoint this descriptor is describing */
+  uint8_t   bCountryCode;        /* specifies the transfer type. */
+  uint8_t   bNumDescriptors;     /* specifies the transfer type. */
+  uint8_t   bReportDescriptorType;    /* Maximum Packet Size this endpoint is capable of sending or receiving */
+  uint16_t  wItemLength;          /* is used to specify the polling interval of certain transfers. */
+}
+HID_DescTypeDef;
+
+
+typedef struct
+{
+  uint8_t  *buf;
+  uint16_t  head;
+  uint16_t tail;
+  uint16_t size;
+  uint8_t  lock;
+} FIFO_TypeDef;
+
+
+/* Structure for HID process */
+typedef struct _HID_Process
+{
+  uint8_t              OutPipe;
+  uint8_t              InPipe;
+  USBH_HID_StateTypeDef     state;
+  uint8_t              OutEp;
+  uint8_t              InEp;
+  HID_CtlStateTypeDef  ctl_state;
+  FIFO_TypeDef         fifo;
+  uint8_t              *pData;
+  uint16_t             length;
+  uint8_t              ep_addr;
+  uint16_t             poll;
+  uint32_t             timer;
+  uint8_t              DataReady;
+  HID_DescTypeDef      HID_Desc;
+  USBH_StatusTypeDef(* Init)(USBH_HandleTypeDef *phost);
+}
+HID_HandleTypeDef;
+
+/**
+  * @}
+  */
+
+/** @defgroup USBH_HID_CORE_Exported_Defines
+  * @{
+  */
+
+#define USB_HID_GET_REPORT                            0x01U
+#define USB_HID_GET_IDLE                              0x02U
+#define USB_HID_GET_PROTOCOL                          0x03U
+#define USB_HID_SET_REPORT                            0x09U
+#define USB_HID_SET_IDLE                              0x0AU
+#define USB_HID_SET_PROTOCOL                          0x0BU
+
+
+
+
+/* HID Class Codes */
+#define USB_HID_CLASS                                 0x03U
+
+/* Interface Descriptor field values for HID Boot Protocol */
+#define HID_BOOT_CODE                                 0x01U
+#define HID_KEYBRD_BOOT_CODE                          0x01U
+#define HID_MOUSE_BOOT_CODE                           0x02U
+
+
+/**
+  * @}
+  */
+
+/** @defgroup USBH_HID_CORE_Exported_Macros
+  * @{
+  */
+/**
+  * @}
+  */
+
+/** @defgroup USBH_HID_CORE_Exported_Variables
+  * @{
+  */
+extern USBH_ClassTypeDef  HID_Class;
+#define USBH_HID_CLASS    &HID_Class
+/**
+  * @}
+  */
+
+/** @defgroup USBH_HID_CORE_Exported_FunctionsPrototype
+  * @{
+  */
+
+USBH_StatusTypeDef USBH_HID_SetReport(USBH_HandleTypeDef *phost,
+                                      uint8_t reportType,
+                                      uint8_t reportId,
+                                      uint8_t *reportBuff,
+                                      uint8_t reportLen);
+
+USBH_StatusTypeDef USBH_HID_GetReport(USBH_HandleTypeDef *phost,
+                                      uint8_t reportType,
+                                      uint8_t reportId,
+                                      uint8_t *reportBuff,
+                                      uint8_t reportLen);
+
+USBH_StatusTypeDef USBH_HID_GetHIDReportDescriptor(USBH_HandleTypeDef *phost,
+                                                   uint16_t length);
+
+USBH_StatusTypeDef USBH_HID_GetHIDDescriptor(USBH_HandleTypeDef *phost,
+                                             uint16_t length);
+
+USBH_StatusTypeDef USBH_HID_SetIdle(USBH_HandleTypeDef *phost,
+                                    uint8_t duration,
+                                    uint8_t reportId);
+
+USBH_StatusTypeDef USBH_HID_SetProtocol(USBH_HandleTypeDef *phost,
+                                        uint8_t protocol);
+
+void USBH_HID_EventCallback(USBH_HandleTypeDef *phost);
+
+HID_TypeTypeDef USBH_HID_GetDeviceType(USBH_HandleTypeDef *phost);
+
+uint8_t USBH_HID_GetPollInterval(USBH_HandleTypeDef *phost);
+
+void USBH_HID_FifoInit(FIFO_TypeDef *f, uint8_t *buf, uint16_t size);
+
+uint16_t  USBH_HID_FifoRead(FIFO_TypeDef *f, void *buf, uint16_t  nbytes);
+
+uint16_t  USBH_HID_FifoWrite(FIFO_TypeDef *f, void *buf, uint16_t nbytes);
+
+/**
+  * @}
+  */
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* __USBH_HID_H */
+
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+

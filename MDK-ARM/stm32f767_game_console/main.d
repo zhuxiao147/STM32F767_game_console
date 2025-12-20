@@ -36,16 +36,18 @@ stm32f767_game_console/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   D:\keil5\ARM\ARMCLANG\Bin\..\include\stdio.h \
   D:\keil5\ARM\ARMCLANG\Bin\..\include\string.h \
   D:\keil5\ARM\ARMCLANG\Bin\..\include\stdbool.h \
-  ..\Third\tinyusb\src\tusb.h ..\Third\tinyusb\src\common\tusb_common.h \
+  ..\Middlewares\Third_Party\tinyusb\src\tusb.h \
+  ..\Middlewares\Third_Party\tinyusb\src\common\tusb_common.h \
   D:\keil5\ARM\ARMCLANG\Bin\..\include\inttypes.h \
-  ..\Third\tinyusb\src\tusb_option.h \
-  ..\Third\tinyusb\src\common\tusb_compiler.h \
-  ..\Third\tinyusb\tusb_config.h ..\Third\tinyusb\src\common\tusb_mcu.h \
-  ..\Third\tinyusb\src\common\tusb_verify.h \
-  ..\Third\tinyusb\src\common\tusb_types.h \
-  ..\Third\tinyusb\src\common\tusb_debug.h \
-  ..\Third\tinyusb\src\osal\osal.h \
-  ..\Third\tinyusb\src\osal\osal_freertos.h \
+  ..\Middlewares\Third_Party\tinyusb\src\tusb_option.h \
+  ..\Middlewares\Third_Party\tinyusb\src\common\tusb_compiler.h \
+  ..\Middlewares\Third_Party\tinyusb\tusb_config.h \
+  ..\Middlewares\Third_Party\tinyusb\src\common\tusb_mcu.h \
+  ..\Middlewares\Third_Party\tinyusb\src\common\tusb_verify.h \
+  ..\Middlewares\Third_Party\tinyusb\src\common\tusb_types.h \
+  ..\Middlewares\Third_Party\tinyusb\src\common\tusb_debug.h \
+  ..\Middlewares\Third_Party\tinyusb\src\osal\osal.h \
+  ..\Middlewares\Third_Party\tinyusb\src\osal\osal_freertos.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
   ..\Core\Inc\FreeRTOSConfig.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\projdefs.h \
@@ -57,12 +59,13 @@ stm32f767_game_console/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h \
-  ..\Third\tinyusb\src\common\tusb_fifo.h \
-  ..\Third\tinyusb\src\host\usbh.h \
-  ..\Third\tinyusb\src\class\hid\hid_host.h \
-  ..\Third\tinyusb\src\class\hid\hid.h ..\Third\tinyusb\bsp\board_api.h \
+  ..\Middlewares\Third_Party\tinyusb\src\common\tusb_fifo.h \
+  ..\Middlewares\Third_Party\tinyusb\src\host\usbh.h \
+  ..\Middlewares\Third_Party\tinyusb\src\class\hid\hid_host.h \
+  ..\Middlewares\Third_Party\tinyusb\src\class\hid\hid.h \
+  ..\Middlewares\Third_Party\tinyusb\bsp\board_api.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS_V2\cmsis_os.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS_V2\cmsis_os2.h \
-  ..\Core\Inc\usart.h ..\USB_HOST\App\usb_host.h ..\Core\Inc\gpio.h \
-  ..\APP\cli\cli.h
+  ..\Core\Inc\usart.h ..\Core\Inc\gpio.h ..\APP\cli\cli.h \
+  ..\APP\app_init\app_init.h

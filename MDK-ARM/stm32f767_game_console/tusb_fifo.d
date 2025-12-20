@@ -1,20 +1,21 @@
 stm32f767_game_console/tusb_fifo.o: \
-  ..\Third\tinyusb\src\common\tusb_fifo.c \
-  ..\Third\tinyusb\src\osal\osal.h \
-  ..\Third\tinyusb\src\common\tusb_common.h \
+  ..\Middlewares\Third_Party\tinyusb\src\common\tusb_fifo.c \
+  ..\Middlewares\Third_Party\tinyusb\src\osal\osal.h \
+  ..\Middlewares\Third_Party\tinyusb\src\common\tusb_common.h \
   D:\keil5\ARM\ARMCLANG\Bin\..\include\stdbool.h \
   D:\keil5\ARM\ARMCLANG\Bin\..\include\stdint.h \
   D:\keil5\ARM\ARMCLANG\Bin\..\include\inttypes.h \
   D:\keil5\ARM\ARMCLANG\Bin\..\include\stddef.h \
   D:\keil5\ARM\ARMCLANG\Bin\..\include\string.h \
-  ..\Third\tinyusb\src\tusb_option.h \
-  ..\Third\tinyusb\src\common\tusb_compiler.h \
-  ..\Third\tinyusb\tusb_config.h ..\Third\tinyusb\src\common\tusb_mcu.h \
-  ..\Third\tinyusb\src\common\tusb_verify.h \
-  ..\Third\tinyusb\src\common\tusb_types.h \
-  ..\Third\tinyusb\src\common\tusb_debug.h \
+  ..\Middlewares\Third_Party\tinyusb\src\tusb_option.h \
+  ..\Middlewares\Third_Party\tinyusb\src\common\tusb_compiler.h \
+  ..\Middlewares\Third_Party\tinyusb\tusb_config.h \
+  ..\Middlewares\Third_Party\tinyusb\src\common\tusb_mcu.h \
+  ..\Middlewares\Third_Party\tinyusb\src\common\tusb_verify.h \
+  ..\Middlewares\Third_Party\tinyusb\src\common\tusb_types.h \
+  ..\Middlewares\Third_Party\tinyusb\src\common\tusb_debug.h \
   D:\keil5\ARM\ARMCLANG\Bin\..\include\stdio.h \
-  ..\Third\tinyusb\src\osal\osal_freertos.h \
+  ..\Middlewares\Third_Party\tinyusb\src\osal\osal_freertos.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
   ..\Core\Inc\FreeRTOSConfig.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\projdefs.h \
@@ -26,4 +27,4 @@ stm32f767_game_console/tusb_fifo.o: \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h \
-  ..\Third\tinyusb\src\common\tusb_fifo.h
+  ..\Middlewares\Third_Party\tinyusb\src\common\tusb_fifo.h

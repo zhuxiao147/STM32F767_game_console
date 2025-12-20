@@ -25,13 +25,12 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "usbh_hid.h"
-#include "usb_host.h"
+#include "hid_report_parser.h"
+#include "app_init.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-extern USBH_HandleTypeDef hUsbHostFS;
 
 /* USER CODE END PTD */
 
@@ -51,7 +50,14 @@ osThreadId tinyUSBTaskHandle;
 const osThreadAttr_t tinyUSBTask_attributes = {
   .name = "tinyUSBTask",
   .stack_size = 2048,
-  .priority = (osPriority_t) osPriorityHigh,
+  .priority = (osPriority_t) osPriorityNormal,
+};
+
+osThreadId gameTaskHandle;
+const osThreadAttr_t gameTask_attributes = {
+  .name = "gameTask",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityAboveNormal,
 };
 /* USER CODE END Variables */
 /* Definitions for defaultTask */
@@ -65,13 +71,12 @@ const osThreadAttr_t defaultTask_attributes = {
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
 
-void Xbox_Task(void const *argument);
+void Game_Task(void *argument);
 void TinyUSB_Task(void *argument);
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void *argument);
 
-extern void MX_USB_HOST_Init(void);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
 /**
@@ -107,6 +112,7 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN RTOS_THREADS */
 
   tinyUSBTaskHandle = osThreadNew(TinyUSB_Task, NULL, &tinyUSBTask_attributes);
+  gameTaskHandle = osThreadNew(Game_Task, NULL, &gameTask_attributes);
   //osThreadDef(xboxTask, Xbox_Task, osPriorityNormal, 0, 1024);
   //osThreadCreate(osThread(xboxTask), NULL);
 
@@ -129,7 +135,6 @@ void MX_FREERTOS_Init(void) {
 void StartDefaultTask(void *argument)
 {
   /* init code for USB_HOST */
-  MX_USB_HOST_Init();
   /* USER CODE BEGIN StartDefaultTask */
   /* Infinite loop */
   for (;;)
@@ -141,53 +146,43 @@ void StartDefaultTask(void *argument)
 
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
-extern ApplicationTypeDef Appli_state;
-void Xbox_Task(void const *argument)
+void Game_Task(void *argument)
 {
-  for (;;)
-  {
-    HID_TypeTypeDef hid_type = USBH_HID_GetDeviceType(&hUsbHostFS);
-    if (Appli_state != APPLICATION_READY)
+    uint8_t keyupflag = 0;
+    hid_input_event_t event;
+    while (1)
     {
-      osDelay(10);
-      continue;
-    }
-    if (hid_type == HID_KEYBOARD)
-    {
-      if (hUsbHostFS.pActiveClass &&
-          hUsbHostFS.pActiveClass->pData)
-      {
-        HID_HandleTypeDef *HID_Handle =
-            (HID_HandleTypeDef *)hUsbHostFS.pActiveClass->pData;
-
-        if (HID_Handle->length > 0)
+        if (xQueueReceive(HIDInputEventQueue, &event, portMAX_DELAY) == pdTRUE)
         {
-          uint8_t *report = HID_Handle->pData;
-
-          printf("HID Report: ");
-          for (int i = 0; i < HID_Handle->length; i++)
-          {
-            printf("%02X ", report[i]);
-          }
-          printf("\r\n");
+            if (event.type == HID_EVT_KEYBOARD)
+            {
+                keyupflag = 1;
+                for (int i = 0; i < 6; i++)
+                {
+                    if (event.keyboard.keycode[i] != 0)
+                    {   
+                        keyupflag = 0;
+                        if (event.keyboard.modifier & HID_KEYBOARD_MODIFIER_SHIFT)
+                        {
+                            printf("Game_Task HID_EVT_KEYBOARD %c\n", keymap_shift[event.keyboard.keycode[i]]);
+                        }
+                        else
+                        {
+                            printf("Game_Task HID_EVT_KEYBOARD %c\n", keymap[event.keyboard.keycode[i]]);
+                        }
+                    }
+                }
+                if (keyupflag)
+                {
+                  printf("Game_Task KEY UP\n");
+                }
+            }
+            else if (event.type == HID_EVT_MOUSE)
+            {
+                printf("Game_Task HID_EVT_MOUSE x:%d y:%d wheel:%d buttons:%d\n", event.mouse.x, event.mouse.y, event.mouse.wheel, event.mouse.buttons);
+            }
         }
-      }
-
-      osDelay(10);
     }
-    else if (hid_type == HID_MOUSE)
-    {
-      HID_MOUSE_Info_TypeDef *mouse;
-
-      mouse = USBH_HID_GetMouseInfo(&hUsbHostFS);
-      printf("X=%d Y=%d Buttons=%02X\r\n",
-             mouse->x,
-             mouse->y,
-             mouse->buttons[0]);
-
-      osDelay(10);
-    }
-  }
 }
 
 void TinyUSB_Task(void *argument)

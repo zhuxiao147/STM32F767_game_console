@@ -20,12 +20,12 @@
 #include "main.h"
 #include "cmsis_os.h"
 #include "usart.h"
-#include "usb_host.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "cli.h"
+#include "app_init.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -97,6 +97,8 @@ int main(void)
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
   LED_Init();
+  HID_EventQueue_Init();
+
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -112,28 +114,28 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
-    if (USART_RX_LEN > 0)
-    {
-      uint32_t retlen = cli_parser(USART_RX_BUF, USART_RX_LEN, USART_TX_BUF, USART_BUF_MAXLEN);
-      if (retlen > 0)
-      {
-        printf("%s", USART_TX_BUF);
-      }
-      memset(USART_RX_BUF, 0, USART_BUF_MAXLEN);
-      memset(USART_TX_BUF, 0, USART_BUF_MAXLEN);
-      USART_RX_LEN = 0;
-    }
-    else
-    {
-      HAL_Delay(1000);
-      HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_1);
-    }
+  // while (1)
+  // {
+  //   if (USART_RX_LEN > 0)
+  //   {
+  //     uint32_t retlen = cli_parser(USART_RX_BUF, USART_RX_LEN, USART_TX_BUF, USART_BUF_MAXLEN);
+  //     if (retlen > 0)
+  //     {
+  //       printf("%s", USART_TX_BUF);
+  //     }
+  //     memset(USART_RX_BUF, 0, USART_BUF_MAXLEN);
+  //     memset(USART_TX_BUF, 0, USART_BUF_MAXLEN);
+  //     USART_RX_LEN = 0;
+  //   }
+  //   else
+  //   {
+  //     HAL_Delay(1000);
+  //     HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_1);
+  //   }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-  }
+  // }
   /* USER CODE END 3 */
 }
 
