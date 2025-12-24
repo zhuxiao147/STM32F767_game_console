@@ -1,5 +1,5 @@
-stm32f767_game_console/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
-  ..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal.h \
+stm32f767_game_console/tim.o: ..\Core\Src\tim.c ..\Core\Inc\tim.h \
+  ..\Core\Inc\main.h ..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal.h \
   ..\Core\Inc\stm32f7xx_hal_conf.h \
   ..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_rcc.h \
   ..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_def.h \
@@ -70,11 +70,4 @@ stm32f767_game_console/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\Middlewares\Third_Party\tinyusb\src\class\hid\hid_host.h \
   ..\Middlewares\Third_Party\tinyusb\src\class\hid\hid.h \
   ..\Middlewares\Third_Party\tinyusb\bsp\board_api.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS_V2\cmsis_os.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS_V2\cmsis_os2.h \
-  ..\Core\Inc\rng.h ..\Core\Inc\tim.h ..\Core\Inc\usart.h \
-  ..\Core\Inc\usb_otg.h ..\Core\Inc\gpio.h ..\APP\cli\cli.h \
-  ..\APP\app_init\app_init.h ..\APP\display\lcd.h ..\APP\display\sys.h \
-  D:\keil5\ARM\ARMCLANG\Bin\..\include\stdlib.h ..\Utils\malloc.h \
-  ..\APP\chip8\chip8.h
+  ..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h

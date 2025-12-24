@@ -20,6 +20,7 @@
 #include "main.h"
 #include "cmsis_os.h"
 #include "rng.h"
+#include "tim.h"
 #include "usart.h"
 #include "usb_otg.h"
 #include "gpio.h"
@@ -30,6 +31,7 @@
 #include "app_init.h"
 #include "lcd.h"
 #include "malloc.h"
+#include "chip8.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -102,6 +104,7 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USB_OTG_FS_HCD_Init();
   MX_RNG_Init();
+  MX_TIM7_Init();
   /* USER CODE BEGIN 2 */
   LCD_Init();
   LED_Init();
@@ -261,7 +264,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     HAL_IncTick();
   }
   /* USER CODE BEGIN Callback 1 */
-
+  if (htim->Instance == TIM7)
+  {
+      chip8_timer_tick(&chip8_emulator);
+  }
   /* USER CODE END Callback 1 */
 }
 

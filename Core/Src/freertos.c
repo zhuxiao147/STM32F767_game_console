@@ -29,6 +29,7 @@
 #include "app_init.h"
 #include "lcd.h"
 #include "chip8.h"
+#include "tim.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -43,7 +44,6 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-chip8_t chip8_emulator;
 uint16_t chip8_whitecolor[64] = {WHITE};
 uint16_t chip8_blackcolor[64] = {BLACK};
 /* USER CODE END PM */
@@ -73,6 +73,7 @@ const osThreadAttr_t hidParserTask_attributes = {
 
 /* USER CODE END Variables */
 /* Definitions for defaultTask */
+
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -158,13 +159,14 @@ void Game_Task(void *argument)
 {
     // Initialize the CHIP8 emulator
     chip8_init(&chip8_emulator);
-    chip8_load_rom(&chip8_emulator, RussianRouletteCarmeloCortez1978, sizeof(RussianRouletteCarmeloCortez1978));
+    chip8_load_rom(&chip8_emulator, Pong1player, sizeof(Pong1player));
     memset(chip8_whitecolor, 0xFFFFF, sizeof(chip8_whitecolor));
     memset(chip8_blackcolor, 0x00000, sizeof(chip8_blackcolor));
     // Set the display direction to vertical
     LCD_Display_Dir(1);  
     LCD_ShowString(10,40,260,32,32,(uint8_t*)"CHIP8 EMULATOR"); 
     LCD_Clear(BLACK);
+    HAL_TIM_Base_Start_IT(&htim7);
     while (1)
     {
         chip8_step(&chip8_emulator);

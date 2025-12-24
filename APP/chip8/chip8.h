@@ -26,6 +26,9 @@ typedef struct
 extern uint8_t testopcode[478];
 extern uint8_t testkeypad[913];
 extern unsigned char RussianRouletteCarmeloCortez1978[156]; 
+extern unsigned char Pong1player[246];
+
+extern chip8_t chip8_emulator;
 
 void chip8_init(chip8_t *c);
 
@@ -41,5 +44,6 @@ void chip8_clear_screen(chip8_t *c);
 
 void chip8_draw(chip8_t *c, uint8_t x, uint8_t y, uint8_t height);
 
+void chip8_timer_tick(chip8_t *c);
 
 #endif

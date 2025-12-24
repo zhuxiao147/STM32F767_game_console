@@ -75,4 +75,5 @@ stm32f767_game_console/freertos.o: ..\Core\Src\freertos.c \
   ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS_V2\cmsis_os2.h \
   ..\APP\hid_report_parser\hid_report_parser.h \
   ..\APP\app_init\app_init.h ..\APP\display\lcd.h ..\APP\display\sys.h \
-  D:\keil5\ARM\ARMCLANG\Bin\..\include\stdlib.h ..\APP\chip8\chip8.h
+  D:\keil5\ARM\ARMCLANG\Bin\..\include\stdlib.h ..\APP\chip8\chip8.h \
+  ..\Core\Inc\tim.h
