@@ -35,7 +35,7 @@
 | MCU | STM32F767 |
 | 主频 | 216 MHz |
 | 架构 | ARM Cortex-M7 |
-| USB | OTG FS / HS |
+| USB | OTG FS |
 | 输入 | USB HID（键盘 / 鼠标） |
 | 显示 | TFT-LCD / 上位机串口DEBUG输出 |
 
